@@ -66,7 +66,6 @@ case $i in
         esac
     done
     echo "copy to sspanel"
-    break
     ;;
 *)
     echo error
