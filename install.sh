@@ -42,10 +42,12 @@ case $i in
 "whmcs")
     echo "copy to whmcs"
     cp -R sdk/whmcs/8.7.3/* $dir
+    break
     ;;
 "v2board")
     echo "copy to v2board"
     cp -R sdk/v2board/1.7.4/* $dir
+    break
     ;;
 "sspanel-uim")
     echo "Which version do you want to install in?"
@@ -53,9 +55,11 @@ case $i in
         case $version in
         "22.01")
             cp -R sdk/sspanel/sspanel-uim/22.01/* $dir
+            break
             ;;
         "23.05")
             cp -R sdk/sspanel/sspanel-uim/23.05/* $dir
+            break
             ;;
         *)
             echo error
