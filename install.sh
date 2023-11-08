@@ -73,4 +73,5 @@ case $i in
     ;;
 esac
 rm -rf sdk
+rm sdk.tar
 echo "Installed successfully!"
