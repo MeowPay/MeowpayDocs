@@ -1,5 +1,5 @@
 ## Usage
-[Sign up]("https://meowpay.org") ->Upgrade to business account ->Get app quota ->Create APP ->Edit app ->Install using shell script
+[Sign up](https://meowpay.org) ->Upgrade to business account ->Get app quota ->Create APP ->Edit app ->Install using shell script
 
 ``` bash
 bash <(curl -sfSL https://raw.githubusercontent.com/Meowpay/MeowpayDocs/main/install.sh)
