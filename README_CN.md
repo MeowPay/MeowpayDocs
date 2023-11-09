@@ -27,8 +27,8 @@ bash <(curl -sfSL https://raw.githubusercontent.com/Meowpay/MeowpayDocs/main/ins
 
 安装步骤请仔细阅读使用文档。
 
-[WHMCS](https://github.com/XTLS/Xray-core/blob/main/docs/WHMCS_CN.md)
+[WHMCS](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/WHMCS_CN.md)
 
-[SSPanel-UIM](https://github.com/XTLS/Xray-core/blob/main/docs/SSPanel-UIM.md)
+[SSPanel-UIM](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/SSPanel-UIM.md)
 
-[V2Board](https://github.com/XTLS/Xray-core/blob/main/docs/V2board.md)
+[V2Board](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/V2board.md)

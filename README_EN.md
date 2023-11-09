@@ -29,8 +29,8 @@ bash <(curl -sfSL https://raw.githubusercontent.com/Meowpay/MeowpayDocs/main/ins
 
 For details, please read our documentation.
 
-[WHMCS](https://github.com/XTLS/Xray-core/blob/main/docs/WHMCS_EN.md)
+[WHMCS](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/WHMCS_EN.md)
 
-[SSPanel-UIM](https://github.com/XTLS/Xray-core/blob/main/docs/SSPanel-UIM.md)
+[SSPanel-UIM](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/SSPanel-UIM.md)
 
-[V2Board](https://github.com/XTLS/Xray-core/blob/main/docs/V2board.md)
+[V2Board](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/V2board.md)
