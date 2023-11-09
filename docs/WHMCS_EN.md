@@ -1,5 +1,5 @@
 ## Usage
-<a href="https://meowpay.org" target="_blank" >Sign up</a> ->Upgrade to business account ->Get app quota ->Create APP ->Edit app ->Install using shell script
+[Sign up]("https://meowpay.org"){:target="_blank"} ->Upgrade to business account ->Get app quota ->Create APP ->Edit app ->Install using shell script
 
 ``` bash
 bash <(curl -sfSL https://raw.githubusercontent.com/Meowpay/MeowpayDocs/main/install.sh)
