@@ -4,7 +4,7 @@
 [简体中文](https://github.com/Meowpay/MeowpayDocs/blob/main/README_ZH.md)
 
 ## Visit our website to regist your account  
-Web Address: [https://meowpay.org](https://meowpay.org)
+Web Address: <a href="https://meowpay.org" target="_blank" >https://meowpay.org</a>
 
 ## Supported projects
 [WHMCS](https://www.whmcs.com/)
@@ -15,9 +15,9 @@ Web Address: [https://meowpay.org](https://meowpay.org)
 
 ...
 
-If you wish to develop yourself version please see the [document.](https://meowpay.org/docs) 
+If you wish to develop yourself version please see <a href="https://meowpay.org/docs" target="_blank">the document.</a>
 
-Or need help, [please contact us.](https://t.me/MeowPayChannel)
+Or need help, <a href="https://t.me/MeowPayChannel">please contact us.</a>
 
 ## Supported Coins
 Monero(XMR) only currently.

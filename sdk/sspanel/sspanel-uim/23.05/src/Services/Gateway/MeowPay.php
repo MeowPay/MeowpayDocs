@@ -142,7 +142,6 @@ final class Payment
         $js_rq_data['params']['currency_type'] = $this->currency_type;
         $rq = json_encode($js_rq_data);
         $response = post_request($url, $rq);
-        echo PHP_EOL; // 换行符
         return $response['result']['payment_info']['pay_link'];
     }
 }
