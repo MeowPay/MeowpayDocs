@@ -1,7 +1,7 @@
 # MeowPay Docs
-[English](https://github.com/Meowpay/MeowpayDocs/blob/main/README.md)
+[English](https://github.com/Meowpay/MeowpayDocs/blob/main/README_EN.md)
 
-[简体中文](https://github.com/Meowpay/MeowpayDocs/blob/main/README_ZH.md)
+[简体中文](https://github.com/Meowpay/MeowpayDocs/blob/main/README_CN.md)
 
 ## Visit our website to regist your account  
 Web Address: <a href="https://meowpay.org" target="_blank" >https://meowpay.org</a>

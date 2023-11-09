@@ -1,7 +1,7 @@
 # 喵支付
-[English](https://github.com/Meowpay/MeowpayDocs/blob/main/README.md)
+[English](https://github.com/Meowpay/MeowpayDocs/blob/main/README_EN.md)
 
-[简体中文](https://github.com/Meowpay/MeowpayDocs/blob/main/README_ZH.md)
+[简体中文](https://github.com/Meowpay/MeowpayDocs/blob/main/README_CN.md)
 
 ## 访问网站创建用户
 网址: <a href="https://meowpay.org" target="_blank" >https://meowpay.org</a>
