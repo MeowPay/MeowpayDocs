@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\Pay;
 
-use App\Exceptions\RuleValidationException;
 use App\Http\Controllers\PayController;
 use Illuminate\Http\Request;
 use GuzzleHttp\Exception\GuzzleException;
 
-
 class MeowpayController extends PayController
 {
-
     public function gateway(string $payway, string $orderSN)
     {
         try {
@@ -18,7 +15,11 @@ class MeowpayController extends PayController
             $app_id = $this->payGateway->merchant_id;
             $currency_type = "CNY";
             $amount = bcmul($this->order->actual_price, 100, 0);
-            $meowpay = new Payment($app_id, (string) $this->order->order_sn, $currency_type, (int)$amount);
+            $return_url = route('meowpay-return', ['order_id' => $this->order->order_sn]);
+            $notify_url = null;
+            // 需要自定义通知地址请删除下行，自定义通知地址请在 Meowpay APP 信息设置 https://meowpay.org/app/list
+            $notify_url = url($this->payGateway->pay_handleroute . '/notify_url');
+            $meowpay = new Payment($app_id, (string) $this->order->order_sn, $currency_type, (int)$amount, $return_url, $notify_url);
             $pay_link = $meowpay->get_pay_link();
             return redirect()->away($pay_link);
         } catch (GuzzleException $exception) {
@@ -57,9 +58,7 @@ class MeowpayController extends PayController
     }
     public function returnUrl(Request $request)
     {
-        $oid = $request->get('order_id');
-        sleep(1);
-        return redirect(url('detail-order-sn', ['orderSN' => $oid]));
+        return redirect(url('detail-order-sn', ['orderSN' => $request->get('order_id')]));
     }
 }
 
