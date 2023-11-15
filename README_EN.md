@@ -13,6 +13,7 @@ Web Address: <a href="https://meowpay.org" target="_blank" >https://meowpay.org<
 
 [V2board](https://github.com/v2board/v2board)
 
+[Dujiaoka(独角数卡)](https://github.com/assimon/dujiaoka)
 ...
 
 If you wish to develop yourself version please see <a href="https://meowpay.org/docs" target="_blank">the document.</a>
@@ -34,3 +35,5 @@ For details, please read our documentation.
 [SSPanel-UIM](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/SSPanel-UIM.md)
 
 [V2Board](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/V2board.md)
+
+[Dujiaoka(独角数卡)](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/Dujiaoka_CN.md)

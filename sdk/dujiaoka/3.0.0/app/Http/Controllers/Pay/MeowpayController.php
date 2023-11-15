@@ -1,62 +1,68 @@
 <?php
 
-// 
-//   自己写别抄，抄NMB抄
-// 
-declare(strict_types=1);
+namespace App\Http\Controllers\Pay;
 
-namespace App\Payments;
+use App\Exceptions\RuleValidationException;
+use App\Http\Controllers\PayController;
+use Illuminate\Http\Request;
+use GuzzleHttp\Exception\GuzzleException;
 
-class MeowPay
+
+class MeowpayController extends PayController
 {
-    private $config;
-    public function __construct($config)
-    {
-        $this->config = $config;
-    }
-    public function form()
-    {
-        return [
-            'app_id' => [
-                'label' => 'AppID',
-                'description' => '应用ID',
-                'type' => 'input',
-            ],
 
-            'currency_type' => [
-                'label' => '货币',
-                'description' => '默认CNY',
-                'type' => 'input'
-            ]
-        ];
-    }
-    public function pay($order)
+    public function gateway(string $payway, string $orderSN)
     {
-        $meowpay = new Payment($this->config['app_id'], $order['trade_no'], $this->config['currency_type'], $order['total_amount']);
-        $pay_link = $meowpay->get_pay_link();
-        return [
-            'type' => 1, // 0:qrcode 1:url
-            'data' => $pay_link,
-        ];
-    }
-    public function notify($params)
-    {
-        $r = (object) $params['params'];
-        $app_id = $r->{'app_id'};
-        if ($app_id == $this->config['app_id']) {
-            $res = json_encode([
-                'jsonrpc' => '2.0', 'id' => $params['id'], 'result' => ['status' => 'Done']
-            ]);
-            return [
-                'trade_no' => $r->{'trade_no'},
-                'callback_no' => $r->{'payment_id'},
-                'custom_result' => $res
-            ];
-        } else {
-            return false;
+        try {
+            $this->loadGateWay($orderSN, $payway);
+            $app_id = $this->payGateway->merchant_id;
+            $currency_type = "CNY";
+            $amount = bcmul($this->order->actual_price, 100, 0);
+            $meowpay = new Payment($app_id, (string) $this->order->order_sn, $currency_type, (int)$amount);
+            $pay_link = $meowpay->get_pay_link();
+            return redirect()->away($pay_link);
+        } catch (GuzzleException $exception) {
+            return $this->err($exception->getMessage());
         }
     }
+    public function notifyUrl(Request $request)
+    {
+        $r = (object) $request->all();
+        $params = (object) $r->{'params'};
+        $app_id = $params->{'app_id'};
+        $trade_no = $params->{'trade_no'};
+        $orderSN = $trade_no;
+        $order = $this->orderService->detailOrderSN($orderSN);
+        if (!$order) {
+            return 'error';
+        }
+        $payGateway = $this->payService->detail($order->pay_id);
+        if (!$payGateway) {
+            return 'error';
+        }
+        if ($payGateway->pay_handleroute != '/pay/meowpay') {
+            return 'fail';
+        }
+        $payment_id = $params->{'payment_id'};
+        $payGateway = $this->payService->detail($order->pay_id);
+        $merchant_id = $payGateway->merchant_id;
+        if ($app_id == $merchant_id) {
+            $order = $this->orderService->detailOrderSN($orderSN);
+            $this->orderProcessService->completedOrder($trade_no, $order->actual_price, $payment_id);
+            return json_encode([
+                'jsonrpc' => '2.0', 'id' => $r->{'id'}, 'result' => ['status' => 'Done']
+            ]);
+        }
+        return 'fail';
+    }
+    public function returnUrl(Request $request)
+    {
+        $oid = $request->get('order_id');
+        sleep(1);
+        return redirect(url('detail-order-sn', ['orderSN' => $oid]));
+    }
 }
+
 
 function post_request($url, $data)
 {
@@ -88,7 +94,7 @@ final class Payment
     function __construct(
         string $app_id,
         string $trade_no,
-        string $currency_type,
+        string $currency_type = null,
         int $amount,
         string $return_url = null,
         string $notify_url = null

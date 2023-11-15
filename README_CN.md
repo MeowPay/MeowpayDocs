@@ -13,6 +13,7 @@
 
 [V2board](https://github.com/v2board/v2board)
 
+[Dujiaoka(独角数卡)](https://github.com/assimon/dujiaoka)
 ...
 
 需要自行开发对接请参考<a href="https://meowpay.org/docs" target="_blank" >网站文档</a>，如果需要帮助对接<a href="https://t.me/MeowPayChannel" target="_blank">请联系我们。</a>
@@ -25,10 +26,12 @@
 bash <(curl -sfSL https://raw.githubusercontent.com/Meowpay/MeowpayDocs/main/install.sh)
 ```
 
-安装步骤请仔细阅读使用文档。
+具体安装步骤请仔细阅读使用文档。
 
 [WHMCS](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/WHMCS_CN.md)
 
 [SSPanel-UIM](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/SSPanel-UIM.md)
 
 [V2Board](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/V2board.md)
+
+[Dujiaoka(独角数卡)](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/Dujiaoka_CN.md)

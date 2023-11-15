@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-url="https://github.com/Meowpay/MeowpayDocs/releases/download/v0.0.1/sdk.tar"
+url="https://github.com/Meowpay/MeowpayDocs/releases/download/v0.0.2/sdk.tar"
 function isCmdExist() {
     which "$1" >/dev/null 2>&1
     if [ $? -eq 0 ]; then
@@ -17,7 +17,7 @@ else
     exit 1
 fi
 echo "Which project do you want to install in?"
-select i in "whmcs" "v2board" "sspanel-uim"; do
+select i in "whmcs" "v2board" "sspanel-uim" "dujiaoka"; do
     case $i in
     "whmcs")
         break
@@ -26,6 +26,9 @@ select i in "whmcs" "v2board" "sspanel-uim"; do
         break
         ;;
     "sspanel-uim")
+        break
+        ;;
+    "dujiaoka")
         break
         ;;
     *)
@@ -46,6 +49,10 @@ case $i in
 "v2board")
     echo "copy to v2board"
     cp -R sdk/v2board/1.7.4/* $dir
+    ;;
+"dujiaoka")
+    echo "copy to dujiaoka"
+    cp -R sdk/dujiaoka/3.0.0/* $dir
     ;;
 "sspanel-uim")
     echo "Which version do you want to install in?"
