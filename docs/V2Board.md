@@ -15,6 +15,8 @@ notify_url 为 https://您的网站地址/api/v1/guest/payment/notify/MeowPay/xx
 
 notify_url添加APP时可留空 安装完毕后可进入管理后台->支付配置 查看
 
+图标url 为 https://meowpay.org/favicon.ico
+
 **请务必使用HTTPS加密协议**
 
 任何疑问请<a herf="https://t.me/MeowpayChannel" target="_blank" >联系我们</a>
