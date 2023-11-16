@@ -34,6 +34,6 @@ For details, please read our documentation.
 
 [SSPanel-UIM](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/SSPanel-UIM.md)
 
-[V2Board](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/V2board.md)
+[V2Board](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/V2Board.md)
 
 [Dujiaoka(独角数卡)](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/Dujiaoka_CN.md)
