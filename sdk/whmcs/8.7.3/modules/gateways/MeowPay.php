@@ -31,7 +31,7 @@ function MeowPay_config()
             'FriendlyName' => '货币类型',
             'Type' => 'text',
             'Size' => '4',
-            'Default' => 'CNY',
+            'Value' => 'CNY',
             'Description' => 'USD/EUR/CNY',
         ],
     ];

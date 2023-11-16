@@ -25,16 +25,16 @@ class MeowPay
 
             'currency_type' => [
                 'label' => '货币',
-                'description' => '默认CNY',
+                'description' => '默认CNY，选填，支持CNY，USD，EUR...',
                 'type' => 'input'
             ]
         ];
     }
     public function pay($order)
     {
-        $currency_type = $this->config['currency_type'];
-        if ($this->config['currency_type'] == "") {
-            $currency_type = "CNY";
+        $currency_type = 'CNY';
+        if (isset($this->config['currency_type'])) {
+            $currency_type = $this->config['currency_type'];
         }
         $meowpay = new Payment($this->config['app_id'], $order['trade_no'], $currency_type, $order['total_amount']);
         $pay_link = $meowpay->get_pay_link();
