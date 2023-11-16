@@ -32,7 +32,11 @@ class MeowPay
     }
     public function pay($order)
     {
-        $meowpay = new Payment($this->config['app_id'], $order['trade_no'], $this->config['currency_type'], $order['total_amount']);
+        $currency_type = $this->config['currency_type'];
+        if ($this->config['currency_type'] == "") {
+            $currency_type = "CNY";
+        }
+        $meowpay = new Payment($this->config['app_id'], $order['trade_no'], $currency_type, $order['total_amount']);
         $pay_link = $meowpay->get_pay_link();
         return [
             'type' => 1, // 0:qrcode 1:url
