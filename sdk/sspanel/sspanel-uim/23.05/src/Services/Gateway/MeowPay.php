@@ -115,17 +115,23 @@ final class Payment
     var $trade_no;
     var $amount;
     var $currency_type;
+    var $return_url;
+    var $notify_url;
 
     function __construct(
         string $app_id,
         string $trade_no,
         string $currency_type,
         int $amount,
+        string $return_url = null,
+        string $notify_url = null
     ) {
         $this->app_id = $app_id;
         $this->trade_no = $trade_no;
         $this->amount = $amount;
         $this->currency_type = $currency_type;
+        $this->return_url = $return_url;
+        $this->notify_url = $notify_url;
     }
     function get_pay_link($url = null, $method = "create_payment")
     {
@@ -140,7 +146,9 @@ final class Payment
         $js_rq_data['params']['trade_no'] = $this->trade_no;
         $js_rq_data['params']['amount'] = $this->amount;
         $js_rq_data['params']['currency_type'] = $this->currency_type;
-        $rq = json_encode($js_rq_data);
+        $js_rq_data['params']['return_url'] = $this->return_url;
+        $js_rq_data['params']['notify_url'] = $this->notify_url;
+        $rq = json_encode($js_rq_data, JSON_PARTIAL_OUTPUT_ON_ERROR);
         $response = post_request($url, $rq);
         return $response['result']['payment_info']['pay_link'];
     }
