@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-url="https://github.com/Meowpay/MeowpayDocs/releases/download/v0.0.2/sdk.tar"
+url="https://github.com/Meowpay/MeowpayDocs/releases/download/v0.0.3/sdk.tar"
 function isCmdExist() {
     which "$1" >/dev/null 2>&1
     if [ $? -eq 0 ]; then
