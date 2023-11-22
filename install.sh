@@ -56,7 +56,7 @@ case $i in
     ;;
 "sspanel-uim")
     echo "Which version do you want to install in?"
-    select version in "22.01" "23.05"; do
+    select version in "22.01" "23.05" "23.11.03"; do
         case $version in
         "22.01")
             cp -R sdk/sspanel/sspanel-uim/22.01/* $dir
