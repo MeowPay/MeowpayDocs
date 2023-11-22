@@ -66,6 +66,10 @@ case $i in
             cp -R sdk/sspanel/sspanel-uim/23.05/* $dir
             break
             ;;
+        "23.11.03")
+            cp -R sdk/sspanel/sspanel-uim/23.11.03/* $dir
+            break
+            ;;
         *)
             echo error
             continue
