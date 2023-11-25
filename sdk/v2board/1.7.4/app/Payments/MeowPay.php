@@ -1,19 +1,20 @@
 <?php
 
-// 
-//   自己写别抄，抄NMB抄
-// 
 declare(strict_types=1);
 
 namespace App\Payments;
 
-class MeowPay
+use GuzzleHttp\Client;
+
+final class MeowPay
 {
-    private $config;
+    private array $config;
+
     public function __construct($config)
     {
         $this->config = $config;
     }
+
     public function form()
     {
         return [
@@ -26,101 +27,57 @@ class MeowPay
             'currency_type' => [
                 'label' => '货币',
                 'description' => '默认CNY，选填，支持CNY，USD，EUR...',
-                'type' => 'input'
-            ]
+                'type' => 'input',
+            ],
         ];
     }
-    public function pay($order)
+
+    public function pay(array $order)
     {
         $currency_type = 'CNY';
         if (isset($this->config['currency_type'])) {
             $currency_type = $this->config['currency_type'];
         }
-        $meowpay = new Payment($this->config['app_id'], $order['trade_no'], $currency_type, $order['total_amount']);
-        $pay_link = $meowpay->get_pay_link();
+        $js_rq_data = [
+            'jsonrpc' => '2.0',
+            'id' => '0',
+            'method' => 'create_payment',
+            'params' => [
+                'app_id' => $this->config['app_id'],
+                'trade_no' => $order['trade_no'],
+                'amount' => (int) $order['total_amount'],
+                'currency_type' => $currency_type,
+            ],
+        ];
+        $client = new Client();
+        $res = $client->request(
+            'POST',
+            'https://api.meowpay.org/json_rpc/',
+            ['json' => $js_rq_data],
+        );
+        $res_data = json_decode($res->getBody()->getContents(), true);
         return [
             'type' => 1, // 0:qrcode 1:url
-            'data' => $pay_link,
+            'data' => $res_data['result']['payment_info']['pay_link'],
         ];
     }
+
     public function notify($params)
     {
         $r = (object) $params['params'];
         $app_id = $r->{'app_id'};
-        if ($app_id == $this->config['app_id']) {
-            $res = json_encode([
-                'jsonrpc' => '2.0', 'id' => $params['id'], 'result' => ['status' => 'Done']
-            ]);
-            return [
-                'trade_no' => $r->{'trade_no'},
-                'callback_no' => $r->{'payment_id'},
-                'custom_result' => $res
-            ];
-        } else {
+        if ($app_id !== $this->config['app_id']) {
             return false;
         }
-    }
-}
-
-function post_request($url, $data)
-{
-    $headerArray = array("Content-Type: application/json", "charset='utf-8'", "Accept:application/json");
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, TRUE);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYSTATUS, TRUE);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
-    curl_setopt($curl, CURLOPT_POST, 1);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headerArray);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-    $response = curl_exec($curl);
-    curl_close($curl);
-    return json_decode($response, true);
-}
-
-final class Payment
-{
-    var $url = "https://api.meowpay.org/json_rpc/";
-    var $app_id;
-    var $trade_no;
-    var $amount;
-    var $currency_type;
-    var $return_url;
-    var $notify_url;
-
-    function __construct(
-        string $app_id,
-        string $trade_no,
-        string $currency_type,
-        int $amount,
-        string $return_url = null,
-        string $notify_url = null
-    ) {
-        $this->app_id = $app_id;
-        $this->trade_no = $trade_no;
-        $this->amount = $amount;
-        $this->currency_type = $currency_type;
-        $this->return_url = $return_url;
-        $this->notify_url = $notify_url;
-    }
-    function get_pay_link($url = null, $method = "create_payment")
-    {
-        if ($url === null) {
-            $url = $this->url;
-        };
-        $js_rq_data = [];
-        $js_rq_data['jsonrpc'] = '2.0';
-        $js_rq_data['id'] = '0';
-        $js_rq_data['method'] = $method;
-        $js_rq_data['params']['app_id'] = $this->app_id;
-        $js_rq_data['params']['trade_no'] = $this->trade_no;
-        $js_rq_data['params']['amount'] = $this->amount;
-        $js_rq_data['params']['currency_type'] = $this->currency_type;
-        $js_rq_data['params']['return_url'] = $this->return_url;
-        $js_rq_data['params']['notify_url'] = $this->notify_url;
-        $rq = json_encode($js_rq_data, JSON_PARTIAL_OUTPUT_ON_ERROR);
-        $response = post_request($url, $rq);
-        return $response['result']['payment_info']['pay_link'];
+        $res = json_encode([
+            'jsonrpc' => '2.0',
+            'id' => $params['id'],
+            'result' => ['status' => 'Done'],
+        ]);
+        return [
+            'trade_no' => $r->{'trade_no'},
+            'callback_no' => $r->{'payment_id'},
+            'custom_result' => $res,
+        ];
     }
 }
