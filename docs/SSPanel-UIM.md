@@ -1,5 +1,5 @@
 ## 步骤
-<a href="https://meowpay.org" target="_blank" >注册账号</a> ->升级为商业用户 ->获取APP配额 ->添加APP ->输入信息 ->使用交互脚本安装
+<a href="https://meowpay.org" target="_blank" >注册账号</a> ->添加APP ->填写APP信息 ->使用交互脚本安装
 
 ``` bash
 bash <(curl -sfSL https://raw.githubusercontent.com/Meowpay/MeowpayDocs/main/install.sh)
