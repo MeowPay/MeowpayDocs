@@ -73,11 +73,17 @@ final class MeowPay extends AbstractPayment
     public static function getPurchaseHTML(): string
     {
         return '<div class="card-inner">
-        <h4>XMR</h4>
+        <h4>喵支付 XMR USDT TRX</h4>
         <form class="vmqpay" action="/user/payment/purchase/meowpay" method="get">
             <input class="form-control maxwidth-edit" id="price" name="price"  placeholder="输入充值金额后，点击下方图标" autofocus="autofocus" type="number" min="1" max="9999" step="0.01" required="required">
             <button class=" btn btn-flat waves-attach" id="btnSubmit" type="submit">
-                <img src="https://meowpay.org/favicon.ico" height="50px" />
+                <img src="https://static.meowpay.org/images/svg/xmr.svg" height="50px" />
+            </button>
+            <button class=" btn btn-flat waves-attach" id="btnSubmit" type="submit">
+                <img src="https://static.meowpay.org/images/svg/usdt.svg" height="50px" />
+            </button>
+            <button class=" btn btn-flat waves-attach" id="btnSubmit" type="submit">
+                <img src="https://static.meowpay.org/images/svg/trx.svg" height="50px" />
             </button>
         </form>
     </div>
