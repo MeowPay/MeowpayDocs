@@ -1,6 +1,6 @@
 ## 步骤
 ### 喵支付
-<a href="https://meowpay.org" target="_blank" >注册账号</a> ->添加APP ->填写APP信息 
+<a href="https://meowpay.org" target="_blank" >注册账号</a> ->添加APP ->不用填写APP信息 直接点击创建按钮即可,之后点击复制appID
 ### 服务器
 使用交互脚本安装
 
