@@ -1,11 +1,14 @@
 ## 步骤
-<a href="https://meowpay.org" target="_blank" >注册账号</a> ->添加APP ->填写APP信息 ->使用交互脚本安装
+### 喵支付
+<a href="https://meowpay.org" target="_blank" >注册账号</a> ->添加APP ->填写APP信息 
+### 服务器
+使用交互脚本安装
 
 ``` bash
 bash <(curl -sfSL https://raw.githubusercontent.com/Meowpay/MeowpayDocs/main/install.sh)
 ```
 
-
+### 独角网站
 安装完毕后打开管理后台，配置 ->支付配置 ->新增 ->
 | 名称         | 值            |
 | ------------ | ------------- |
@@ -16,6 +19,7 @@ bash <(curl -sfSL https://raw.githubusercontent.com/Meowpay/MeowpayDocs/main/ins
 | 支付场景     | 通用          |
 | 支付方式     | 跳转          |
 | 支付处理路由 | /pay/meowpay  |
+
 ->启用 
 
 ## 补充说明

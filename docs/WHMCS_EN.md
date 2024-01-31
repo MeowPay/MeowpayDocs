@@ -15,3 +15,5 @@ return_url : https://Your_web_site_domain/clientarea.php?action=invoices
 notify_url : https://Your_web_site_domain/modules/gateways/MeowPay/notify.php
 
 **Please make sure you are using HTTPS encryption protocol**
+
+[We](https://t.me/MeowpayChannel) are more than willing to help you with any questions.
