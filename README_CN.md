@@ -14,7 +14,7 @@
 需要自行开发对接请参考<a href="https://meowpay.org/docs" target="_blank" >网站文档</a>，如果需要帮助对接<a href="https://t.me/MeowPayChannel" target="_blank">请联系我们。</a>
 
 ## 支持的支付方式
-XMR（门罗币），USDT-TRC20，TRX
+XMR（门罗币）、USDT-TRC20、TRX
 
 ## 如何使用
 
