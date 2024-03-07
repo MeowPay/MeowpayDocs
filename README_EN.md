@@ -6,21 +6,18 @@
 Web Address: <a href="https://meowpay.org" target="_blank" >https://meowpay.org</a>
 
 ## Supported projects
-[WHMCS](https://www.whmcs.com/)
-
-[SSPanel-UIM](https://github.com/Anankke/SSPanel-Uim)
-
-[V2board](https://github.com/v2board/v2board)
-
-[Dujiaoka(独角数卡)](https://github.com/assimon/dujiaoka)
+[WHMCS](https://www.whmcs.com/), 
+[SSPanel-UIM](https://github.com/Anankke/SSPanel-Uim), 
+[V2board](https://github.com/v2board/v2board), 
+[Dujiaoka(独角数卡)](https://github.com/assimon/dujiaoka) 
 ...
 
-If you wish to develop yourself version please see <a href="https://meowpay.org/docs" target="_blank">the document.</a>
+If you wish to develop yourself version please see <a href="https://meowpay.org/docs" target="_blank">this document.</a>
 
 Or need help, <a href="https://t.me/MeowPayChannel">please contact us.</a>
 
 ## Supported Coins
-Monero(XMR) only currently.
+Monero(XMR), USDT-TRC20, TRX
 ## Usage
 
 ``` bash
@@ -36,3 +33,9 @@ For details, please read our documentation.
 [V2Board](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/V2Board.md)
 
 [Dujiaoka(独角数卡)](https://github.com/Meowpay/MeowpayDocs/blob/main/docs/Dujiaoka_CN.md)
+
+## Add support for USDT-TRC20, TRX 
+1. Open you app list
+2. Click the edit button
+3. Set USDT button to open state
+4. Fill in relevant information (You can get api keys for free from [tronscan.org](https://tronscan.org))
