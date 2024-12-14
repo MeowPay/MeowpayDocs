@@ -4,7 +4,7 @@
 
 ### create_payment
 
-#### Input:
+#### 请求:
 
 ```json
 {
@@ -22,16 +22,16 @@
 }
 ```
 
-| Field         | Type   | Required | Description                                                                                                                        |
-| ------------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| app_id        | String | Required | UUID. Identifier of application.                                                                                                   |
-| trade_no      | String | Required | Trade number. Created by merchant.                                                                                                 |
-| amount        | Number | Required | Positive Integet. Amount multiplied by 100.                                                                                        |
-| currency_type | String | Optional | USD/EUR/CNY. Currency code. Has higher priority than application settings.                                                         |
-| notify_url    | String | Optional | Notify url. Gateway will send a POST request to this url when payment is completed. Has higher priority than application settings. |
-| return_url    | String | Optional | Return url. Gateway will redirect to this url when payment is completed. Has higher priority than application settings.            |
+| 字段          | 类型   | 必填 | Description                                                                                               |
+| ------------- | ------ | ---- | --------------------------------------------------------------------------------------------------------- |
+| app_id        | String | 必填 | UUID。 应用 ID 。                                                                                         |
+| trade_no      | String | 必填 | 客户端创建的支付单号。                                                                                    |
+| amount        | Number | 必填 | 正整数（金额乘以一百）。                                                                                  |
+| currency_type | String | 可选 | USD/EUR/CNY。货币类型，优先级高于 App 设置。                                                              |
+| notify_url    | String | 可选 | 通知地址。支付完成后会向这个地址发送一个 POST 请求，应用根据请求进行校验及后续处理。优先级高于 App 设置。 |
+| return_url    | String | 可选 | 返回地址。支付完成后，支付页面跳转的地址。优先级高于 App 设置。                                           |
 
-#### Output:
+#### 返回:
 
 ```json
 {
@@ -50,22 +50,22 @@
 }
 ```
 
-| Field          | Type   | Required | Description                                                                |
-| -------------- | ------ | -------- | -------------------------------------------------------------------------- |
-| app_id         | String | Required | UUID. Identifier of application.                                           |
-| payment_id     | String | Required | UUID. Identifier of payment.                                               |
-| currency_type  | String | Required | USD/EUR/CNY. Currency code. Has higher priority than application settings. |
-| amount         | Number | Required | Positive Integet. Amount multiplied by 100.                                |
-| pay_link       | String | Required | Payment link. Used for client to pay.                                      |
-| completed      | String | Required | Unix Time Stamp(Millisecond) or Zero(Not completed).                       |
-| notified       | String | Required | True,False or Failed.The payment is notified or not.                       |
-| callback_error | String | Required | Callback error message.                                                    |
+| 字段           | 类型   | 必填 | Description                                             |
+| -------------- | ------ | ---- | ------------------------------------------------------- |
+| app_id         | String | 必填 | UUID。 应用 ID。                                        |
+| payment_id     | String | 必填 | UUID。MeowPay 生成的 订单 ID。                          |
+| currency_type  | String | 必填 | 货币类型。                                              |
+| amount         | Number | 必填 | 正整数（金额乘以一百）。                                |
+| pay_link       | String | 必填 | 支付链接 。                                             |
+| completed      | String | 必填 | Unix 时间戳(毫秒)。0 为未完成。                         |
+| notified       | String | 必填 | True、False、Failed。分别代表已通知、未通知及通知失败。 |
+| callback_error | String | 必填 | 通知错误信息。                                          |
 
 ## As Server
 
 ### notify
 
-#### Input:
+#### 请求:
 
 ```json
 {
@@ -80,13 +80,13 @@
 }
 ```
 
-| Field      | Type   | Required | Description                        |
-| ---------- | ------ | -------- | ---------------------------------- |
-| app_id     | String | Optional | UUID. Identifier of application.   |
-| payment_id | String | Optional | UUID. Identifier of payment.       |
-| trade_no   | String | Optional | Trade number. Created by merchant. |
+| 字段       | 类型   | 必填 | Description                    |
+| ---------- | ------ | ---- | ------------------------------ |
+| app_id     | String | 可选 | UUID。 应用 ID。               |
+| payment_id | String | 可选 | UUID。MeowPay 生成的 订单 ID。 |
+| trade_no   | String | 可选 | 客户端创建的支付单号。         |
 
-#### Output:
+#### 返回:
 
 ```json
 {
@@ -98,12 +98,12 @@
 }
 ```
 
-| Field  | Type   | Required | Description |
-| ------ | ------ | -------- | ----------- |
-| status | String | Optional |             |
+| 字段   | 类型   | 必填 | Description                                                           |
+| ------ | ------ | ---- | --------------------------------------------------------------------- |
+| status | String | 可选 | 成功的话给出这个返回值就好了，忘记怎么实现的了。或许没有错误码就 Ok。 |
 
-# Usage
+# 如何使用
 
-As client: Utilize the createPayment method to generate a payment link while specifying a notification URL.
+As Client: 利用 createPayment 方法生成支付链接并指定通知 URL。
 
-As server: Implement a listener for the notifyURL and define a notify method to handle incoming notifications. Ensure validation of the appId and tradeNo to facilitate subsequent operations.
+As Server: 实现一个 notifyURL 的监听器，并定义一个 notify 方法来处理传入的通知。确保 appId 和 tradeNo 的有效性，以便进行后续操作。
